@@ -1,0 +1,290 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFFFFF;
+}
+
+/* ==================CSS Variables============== */
+    :root{
+        --heading__color:#292929;
+        --subheading__color:#007bff;
+        --tab__bg:#377dff;
+        --log__color:#40E0D0;
+        --tab_nav_color:#fff;
+        --box__shadow: 0 4px 16px rgb(0 0 0 / 10%);
+    }
+/* ===============X===CSS Variables===X========== */
+
+/* ==================Global Styling============== */
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    ul{
+        list-style-type: none;
+    }
+/* ===============X===Global Styling===X=========== */
+
+/* ==================Global class============== */
+
+/* ===============X===Global class===X=========== */
+
+/* ===================Navigation Bar Styling================ */
+    #navbar{
+        position: absolute;
+        top:0;
+        width: 100%;
+    }
+    #navbar_home{
+        position: sticky;
+        top:0;
+        width: 100%;
+        background-color: var(--tab__bg);
+    }
+    nav{
+        justify-content:space-between;
+        align-items:center;
+    }
+    nav .nav__brand img{
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+    }
+    nav .nav__brand span{
+        font-weight:bold;
+        color: var(--log__color);
+    }
+    .toggle{
+        position: absolute;
+        top:20px;
+        font-size: 18px;
+        display:none;
+        right:10px;
+        color: #ccc;
+    }
+    nav .nav__menu ul{
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    nav .nav__menu ul li{
+        margin: 10px 10px 0px 10px;
+    }
+    nav .nav__menu ul li a{
+        font-weight:bold;
+        color: var( --tab_nav_color);
+        transition: all 0.3s ease-in-out;
+    }   
+    nav .nav__menu ul li a:hover{
+        color: var(--log__color);
+    }
+    /* ============Navigation Bar Responsiveness=========== */
+        @media(max-width:1200px){
+            nav{
+                flex-direction: column;
+            }
+        }
+        @media(max-width:1000px){
+           nav .nav__menu ul{
+               flex-direction: column;
+           }
+            .nav__menu{
+               display: none;
+               transition: all 0.5s ease-in-out;
+           }
+           .nav__menu__show{
+            display: initial;
+            }
+           .toggle{
+               display: initial;
+           }
+        }
+    /* ============Navigation Bar Responsiveness=========== */
+/* ===============X====Navigation Bar Styling====X============ */
+
+/* =======================Home Page Styling================= */
+    #home__page {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        color: var(--tab_nav_color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #home__page::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url(../assets/home_bg.jpg) no-repeat center center fixed;
+        background-size: cover;
+        z-index: -1;
+    }
+    
+    #home__page::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: -1;
+    }
+    #home__page h2{
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #FFD700; /* Couleur or */
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Ombre légère pour plus de profondeur */
+        animation: fadeIn 1.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    #home__page h1{
+        font-weight: bold;
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    #home__page h1 span {
+        color: #2ecc71; /* Vert pour 'Zitouna' */
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    #home__page .btn-login{
+        margin-top: 40px;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        background-color: #2ecc71;
+        padding: 12px 30px;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    #home__page .btn-login::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #27ae60;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+    
+    #home__page .btn-login:hover::before {
+        width: 100%;
+    }
+    
+    #home__page .btn-login:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    }
+    #home__page .btn{
+        margin-top:20px;
+        font-size: 18px;
+        font-weight:bold;
+        color:var(--tab_nav_color);
+        background-color: var(--log__color);
+        border: 1px solid var(--log__color);
+    }
+/* ====================X===Home Page Styling===X============== */
+
+/* =======================Login Page Styling================= */
+    #login__page{
+      margin-top:20px;
+      color:var(--heading__color);
+    }
+    #login__page h3,#login__page p{
+        font-weight:bold;
+        text-transform:uppercase;
+    }
+/* ====================X===Login Page Styling===X============== */
+
+/* =======================Add info Page Styling================== */
+
+    #add_page{
+        margin-top:20px;
+    }
+    #add_page h2, #add_page p{
+        color:var(--heading__color);
+        font-weight:bold;
+        text-transform:uppercase;
+    }
+
+/* ====================X===Add Ifo Page Styling===X============== */
+
+/* =======================User Info Styling================= */
+    #user_name{
+        /* position:sticky;
+        top:12%; */
+        padding:10px 20px;
+        background-color: var(--tab_nav_color);
+        box-shadow: var(--box__shadow);
+    }
+    #user_name h3{
+        color:var(--heading__color);
+        font-weight:bold;
+        font-size:18px;
+    }
+    #user_name h3 span{
+        color:var(--log__color);
+        font-size:20px;
+    }
+/* ====================X===User Info Styling===X============== */
+
+/* =======================Display Record Styling================= */
+    #display_record h2, #display_record p{
+        color:var(--heading__color);
+        font-weight:bold;
+        text-transform:uppercase;
+    }
+    #display_record{
+        margin-top:20px;
+    }
+  
+/* ====================X===Display Record Styling===X============== */
+
+/* =======================Transaction Form Styling================= */
+    #transaction{
+        margin-top:20px;
+    }
+    #transaction h2, #transaction p {
+        color:var(--heading__color);
+        font-weight:bold;
+        text-transform:uppercase;
+    }
+/* ====================X===Transaction Form Styling===X============== */
