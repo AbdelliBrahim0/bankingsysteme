@@ -25,15 +25,7 @@
                     <?php 
                        if(!isset($_SESSION['IS_LOGGIN'])){
                     ?>
-                        <li>
-                            <a href="<?php echo SITE__PATH; ?>/index.php">Accueil</a>
-                        </li>
-                        <li>
-                            <a href="https://pruthviraj-rajput-portfolio.rf.gd">A propos</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo SITE__PATH; ?>/pages/Login.php?type=n">Login</a>
-                        </li>
+                        <h4>Bienvenue sur Banque Zitouna</h4>
                     <?php }else {?>
                         <?php if($_SESSION['ROLE'] == 0){ ?>
                             <li>

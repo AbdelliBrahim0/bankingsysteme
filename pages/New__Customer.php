@@ -18,7 +18,7 @@
         $pin_code = "";
         $account_no = "";
         $acount_balance = 200;
-        $aadhar_number = "";
+        $card_number = "";
 
         $checked_ac = "";
         $ac_number = "";
@@ -56,7 +56,7 @@
                 $pin_code = $res["pin_code"];
                 $ac_number = $res["account_no"];
                 $acount_balance = $res["acount_balance"];
-                $aadhar_number = $res["aadhar_number"];
+                $card_number = $res["card_number"];
             }else{
                 // ==========Génération du numéro de carte ===========
                     // Générer un numéro de carte unique à 12 chiffres
@@ -72,13 +72,13 @@
                         }
                         
                         // Vérifier si le numéro existe déjà
-                        $check_sql = "SELECT COUNT(*) as count FROM customer WHERE aadhar_number = '$card_number'";
+                        $check_sql = "SELECT COUNT(*) as count FROM customer WHERE card_number = '$card_number'";
                         $result = mysqli_query($con, $check_sql);
                         $row = mysqli_fetch_assoc($result);
                         
                         if ($row['count'] == 0) {
                             $is_unique = true;
-                            $aadhar_number = $card_number; // Définir le numéro de carte
+                            $card_number = $card_number; // Définir le numéro de carte
                         }
                         
                         $attempts++;
@@ -86,7 +86,7 @@
                     
                     // Si tous les essais échouent, générer un numéro basé sur le timestamp
                     if (!$is_unique) {
-                        $aadhar_number = substr(time() . mt_rand(1000, 9999), -12);
+                        $card_number = substr(time() . mt_rand(1000, 9999), -12);
                     }
                     
                     // Génération du numéro de compte
@@ -133,9 +133,9 @@
             $pin_code =mysqli_escape_string($con,$_POST['pin_code']);
             $account_no = $ac_number;
             $acount_balance = mysqli_escape_string($con,$_POST['account_balance']);
-            $aadhar_number = mysqli_escape_string($con,$_POST['aadhar_number']);
+            $card_number = mysqli_escape_string($con,$_POST['card_number']);
 
-            $sql_fetch = mysqli_query($con,"SELECT * FROM customer WHERE aadhar_number = '$aadhar_number'");
+            $sql_fetch = mysqli_query($con,"SELECT * FROM customer WHERE card_number = '$card_number'");
             if($option == ''){
                 if(mysqli_num_rows($sql_fetch)>0){
                     $msg = "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
@@ -143,12 +143,12 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fermer'></button>
                     </div>";
                 }else{
-                    mysqli_query($con,"INSERT  INTO customer (name,gender,birthday,email,phone_no,state,district,city,pin_code,account_no,aadhar_number,acount_balance) VALUES ('$name','$gender',' $birthday','$email','$phone_no','$state','$district','$city','$pin_code','$account_no','$aadhar_number','$acount_balance')");
+                    mysqli_query($con,"INSERT  INTO customer (name,gender,birthday,email,phone_no,state,district,city,pin_code,account_no,card_number,acount_balance) VALUES ('$name','$gender',' $birthday','$email','$phone_no','$state','$district','$city','$pin_code','$account_no','$card_number','$acount_balance')");
 
                     echo "<script>window.location='New__Customer.php?type=n&msg=msg'</script>";
                 }
             }else{
-                mysqli_query($con,"UPDATE customer SET name='$name',gender='$gender',birthday='$birthday',email='$email',phone_no='$phone_no',state='$state',district='$district',city='$city',pin_code='$pin_code',account_no='$account_no',aadhar_number='$aadhar_number',acount_balance='$acount_balance' WHERE account_no = '$id'");
+                mysqli_query($con,"UPDATE customer SET name='$name',gender='$gender',birthday='$birthday',email='$email',phone_no='$phone_no',state='$state',district='$district',city='$city',pin_code='$pin_code',account_no='$account_no',card_number='$card_number',acount_balance='$acount_balance' WHERE account_no = '$id'");
            
                 echo "<script>window.location='Customers.php?type=n&msg=msg'</script>";
             }
@@ -157,7 +157,7 @@
     // ======X=== Send Records Functionality ===X===
 ?>
     <!-- ------------Customer Form---------------- -->
-    <?php include '../components/User_Name.php' ?>
+    <?php //include '../components/User_Name.php' ?>
     
     <div class="container customer-form-container" id="add_page">
         <?php echo $msg; ?>
@@ -197,10 +197,10 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="aadharNumber" class="form-label">Numéro de carte</label>
+                        <label for="cardNumber" class="form-label">Numéro de carte</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                            <input <?php echo $disabled; ?> type="text" class="form-control" id="aadharNumber" name="aadhar_number" value="<?php echo $aadhar_number; ?>" required>
+                            <input <?php echo $disabled; ?> type="text" class="form-control" id="cardNumber" name="card_number" value="<?php echo $card_number; ?>" required>
                             <div class="invalid-feedback">
                                 Veuillez fournir un numéro de carte valide.
                             </div>
@@ -369,8 +369,8 @@
         e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
     });
     
-    // Format Aadhar number
-    document.getElementById('aadharNumber').addEventListener('input', function (e) {
+    // Format card number
+    document.getElementById('cardNumber').addEventListener('input', function (e) {
         var x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,4})(\d{0,4})/);
         e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2] + (x[3] ? ' ' + x[3] : '');
     });

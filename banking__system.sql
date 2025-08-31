@@ -39,7 +39,7 @@ CREATE TABLE `customer` (
   `city` varchar(255) NOT NULL,
   `pin_code` varchar(15) NOT NULL,
   `account_no` varchar(50) NOT NULL,
-  `aadhar_number` varchar(50) NOT NULL,
+  `card_number` varchar(50) NOT NULL,
   `acount_balance` int(50) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -48,7 +48,7 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `name`, `gender`, `birthday`, `email`, `phone_no`, `state`, `district`, `city`, `pin_code`, `account_no`, `aadhar_number`, `acount_balance`, `created_date`) VALUES
+INSERT INTO `customer` (`id`, `name`, `gender`, `birthday`, `email`, `phone_no`, `state`, `district`, `city`, `pin_code`, `account_no`, `card_number`, `acount_balance`, `created_date`) VALUES
 (3, 'Pruthviraj Rajput', 'Male', ' 2000-05-06', 'pruthviraj.rajput011@gmail.com', '1234567890', 'Maharashtra', 'Nandurbar', 'Shahada', '425444', 'AC677209939100', '12345678900000', 9000, '2021-10-06 13:17:23'),
 (4, 'Kirti Patil', 'Female', ' 2000-06-06', 'kirtipatil@gmail.com', '1234567891', 'Maharashtra', 'Jalgaon', 'Jalgaon', '425444', 'AC677209939101', '12345678900001', 10000, '2021-10-06 13:17:23'),
 (5, 'Harshada Chaudhry ', 'Female', ' 2000-07-14', 'harshadachoudhary@gmail.com', '123467893', 'Maharashtra', 'Jalgaon', 'Jalgaon', '425444', 'AC677209939102', '12345678900002', 10000, '2021-10-06 12:45:59'),
